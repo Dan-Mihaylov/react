@@ -1,0 +1,62 @@
+[
+  {
+    "_id": 1,
+    "name": "Inception",
+    "year": 2010,
+    "genre": "Sci-Fi"
+  },
+  {
+    "_id": 2,
+    "name": "The Dark Knight",
+    "year": 2008,
+    "genre": "Action"
+  },
+  {
+    "_id": 3,
+    "name": "Interstellar",
+    "year": 2014,
+    "genre": "Sci-Fi"
+  },
+  {
+    "_id": 4,
+    "name": "Pulp Fiction",
+    "year": 1994,
+    "genre": "Crime"
+  },
+  {
+    "_id": 5,
+    "name": "The Godfather",
+    "year": 1972,
+    "genre": "Crime"
+  },
+  {
+    "_id": 6,
+    "name": "The Matrix",
+    "year": 1999,
+    "genre": "Sci-Fi"
+  },
+  {
+    "_id": 7,
+    "name": "Forrest Gump",
+    "year": 1994,
+    "genre": "Drama"
+  },
+  {
+    "_id": 8,
+    "name": "Gladiator",
+    "year": 2000,
+    "genre": "Action"
+  },
+  {
+    "_id": 9,
+    "name": "Titanic",
+    "year": 1997,
+    "genre": "Romance"
+  },
+  {
+    "_id": 10,
+    "name": "The Shawshank Redemption",
+    "year": 1994,
+    "genre": "Drama"
+  }
+]
