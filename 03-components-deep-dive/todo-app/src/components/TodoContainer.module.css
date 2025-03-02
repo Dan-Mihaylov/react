@@ -1,0 +1,34 @@
+/* Todo list container */
+
+.todoListContainer {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+.todoListContainer h1 {
+  font-size: 2rem;
+  height: 4rem;
+}
+
+.addBtnContainer {
+  text-align: right;
+  margin-bottom: 5px;
+}
+
+.addBtnContainer button {
+  background-color: #317b6a;
+  border-radius: 0;
+}
+.addBtnContainer button:hover {
+  box-shadow: 1px 2px 8px rgb(48, 48, 48);
+}
+
+.tableWrapper {
+  position: relative;
+  height: calc(100vh - 13rem - 45px);
+  overflow-y: scroll;
+  background: white;
+  overflow: auto;
+  width: 100%;
+}
