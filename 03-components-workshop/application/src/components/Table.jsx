@@ -3,6 +3,9 @@ import UserInfo from "./UserInfo";
 import UserDelete from "./UserDelete";
 import usersServices from "../services/usersServices";
 import { useState, useEffect } from "react";
+import UserCreate from "./UserCreate";
+import Paginator from "./Paginator";
+import Search from "./Search";
 
 
 export default function Table(props) {
@@ -10,6 +13,8 @@ export default function Table(props) {
 	const [users, setUsers] = useState([]);
 	const [infoUser, setInfoUser] = useState(null);
 	const [deleteUser, setDeleteUser] = useState(null);
+	const [showCreateUser, setShowCreateUser] = useState(false);
+	const [editUser, setEditUser] = useState(null);
 
 	useEffect(() => {
 		usersServices.getAll()
@@ -27,7 +32,7 @@ export default function Table(props) {
 
 	const onDeleteClickHandler = async (userId) => {
 		usersServices.getUser(userId)
-		.then(user => setDeleteUser(user))
+			.then(user => setDeleteUser(user))
 	}
 
 	const onDeleteCancelHandler = () => {
@@ -36,45 +41,121 @@ export default function Table(props) {
 
 	const onDeleteConfirmHandler = async () => {
 		usersServices.deleteUser(deleteUser._id)
+			.then(response => {
+				if (response.status === 200) {
+
+					setUsers(users => users.filter(user => user._id !== deleteUser._id));
+					setDeleteUser(null);
+
+				}
+			});
+	}
+
+	const onCreateUserClickHandler = () => {
+		setShowCreateUser(true);
+	}
+
+	const onCloseCreateEditUserHandler = (_id) => {
+		setEditUser(null);
+		setShowCreateUser(false);
+		console.log('ON CLOSE ID...', _id);
+	}
+
+	const onCreateUserHandler = (e) => {
+		e.preventDefault();
+		const formData = new FormData(e.target.parentElement.parentElement);
+		const userData = Object.fromEntries(formData);
+
+		usersServices.userCreate(userData)
 		.then(response => {
 			if (response.status === 200) {
-				
-				setUsers(users => users.filter(user => user._id !== deleteUser._id));
-				setDeleteUser(null);
-
+				return response.json()
 			}
+		})
+		.then(user => {
+			setUsers(users => [...users, user]);
+			setShowCreateUser(false);
 		});
+
+	}
+
+	const onEditUserClickHandler = (userId) => {
+		usersServices.getUser(userId)
+		.then(user => {
+			setEditUser(user);
+		})
+	}
+
+	const onEditHandler = (e, userId) => {
+		e.preventDefault();
+		const formData = new FormData(e.target.parentElement.parentElement);
+		const userData = Object.fromEntries(formData);
+
+		usersServices.userEdit(userData, userId)
+		.then(response => {
+			if (response.status === 200) {
+				return response.json()
+			}
+		})
+		.then(updatedUser => {
+			setUsers(state => state.map(user => user._id === userId ? updatedUser : user));
+			setEditUser(null);
+		})
 	}
 
 	return (
 		<>
-			{
-				infoUser
-				&&
-				<UserInfo 
-					onClose={onInfoCloseHandler}
-					{...infoUser}
+			<section className="card users-container">
+				{
+					infoUser
+					&&
+					<UserInfo
+						onClose={onInfoCloseHandler}
+						{...infoUser}
 					/>
-			}
+				}
 
-			{
-				deleteUser
-				&&
-				<UserDelete
-					_id={deleteUser}
-					firstName={deleteUser.firstName}
-					lastName={deleteUser.lastName}
-					onDelete={onDeleteConfirmHandler}
-					onCancel={onDeleteCancelHandler}
-				/>
-			}
+				{
+					deleteUser
+					&&
+					<UserDelete
+						_id={deleteUser}
+						firstName={deleteUser.firstName}
+						lastName={deleteUser.lastName}
+						onDelete={onDeleteConfirmHandler}
+						onCancel={onDeleteCancelHandler}
+					/>
+				}
 
-			{/* <!-- Table component --> */}
-			<div className="table-wrapper">
+				{
+					showCreateUser
+					&&
+					<UserCreate 
+						onClose={onCloseCreateEditUserHandler}
+						onCreate={onCreateUserHandler}
+					/>
+				}
+
+				{
+					editUser
+					&&
+					<UserCreate
+						onClose={onCloseCreateEditUserHandler}
+						onEdit={onEditHandler}
+						{...editUser}
+					/>
+				}
 
 
 
-				{/* 
+
+
+				{/* <!-- Table component --> */}
+				<div className="table-wrapper">
+
+
+
+					{/* 
 			<!-- Overlap components  -->
 
 			<!-- <div className="loading-shade"> -->
@@ -145,76 +226,85 @@ export default function Table(props) {
 			</div> -->
 			<!-- </div> --> */}
 
-				<table className="table">
-					<thead>
-						<tr>
-							<th>
-								Image
-							</th>
-							<th>
-								First name<svg aria-hidden="true" focusable="false" data-prefix="fas"
-									data-icon="arrow-down" className="icon svg-inline--fa fa-arrow-down Table_icon__+HHgn" role="img"
-									xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-									<path fill="currentColor"
-										d="M374.6 310.6l-160 160C208.4 476.9 200.2 480 192 480s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 370.8V64c0-17.69 14.33-31.1 31.1-31.1S224 46.31 224 64v306.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0S387.1 298.1 374.6 310.6z">
-									</path>
-								</svg>
-							</th>
-							<th>
-								Last name<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-down"
-									className="icon svg-inline--fa fa-arrow-down Table_icon__+HHgn" role="img" xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 384 512">
-									<path fill="currentColor"
-										d="M374.6 310.6l-160 160C208.4 476.9 200.2 480 192 480s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 370.8V64c0-17.69 14.33-31.1 31.1-31.1S224 46.31 224 64v306.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0S387.1 298.1 374.6 310.6z">
-									</path>
-								</svg>
-							</th>
-							<th>
-								Email<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-down"
-									className="icon svg-inline--fa fa-arrow-down Table_icon__+HHgn" role="img" xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 384 512">
-									<path fill="currentColor"
-										d="M374.6 310.6l-160 160C208.4 476.9 200.2 480 192 480s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 370.8V64c0-17.69 14.33-31.1 31.1-31.1S224 46.31 224 64v306.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0S387.1 298.1 374.6 310.6z">
-									</path>
-								</svg>
-							</th>
-							<th>
-								Phone<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-down"
-									className="icon svg-inline--fa fa-arrow-down Table_icon__+HHgn" role="img" xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 384 512">
-									<path fill="currentColor"
-										d="M374.6 310.6l-160 160C208.4 476.9 200.2 480 192 480s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 370.8V64c0-17.69 14.33-31.1 31.1-31.1S224 46.31 224 64v306.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0S387.1 298.1 374.6 310.6z">
-									</path>
-								</svg>
-							</th>
-							<th>
-								Created
-								<svg aria-hidden="true" focusable="false" data-prefix="fas"
-									data-icon="arrow-down" className="icon active-icon svg-inline--fa fa-arrow-down Table_icon__+HHgn" role="img"
-									xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-									<path fill="currentColor"
-										d="M374.6 310.6l-160 160C208.4 476.9 200.2 480 192 480s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 370.8V64c0-17.69 14.33-31.1 31.1-31.1S224 46.31 224 64v306.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0S387.1 298.1 374.6 310.6z">
-									</path>
-								</svg>
-							</th>
-							<th>Actions</th>
-						</tr>
-					</thead>
-					<tbody>
 
-						{users.map(user =>
-							<UserRow
-								key={user._id}
-								onInfo={onInfoClickHandler}
-								onDelete={onDeleteClickHandler}
-								{...user}
-							/>
-						)}
-					</tbody>
+			<Search />
 
-				</table>
+					<table className="table">
+						<thead>
+							<tr>
+								<th>
+									Image
+								</th>
+								<th>
+									First name<svg aria-hidden="true" focusable="false" data-prefix="fas"
+										data-icon="arrow-down" className="icon svg-inline--fa fa-arrow-down Table_icon__+HHgn" role="img"
+										xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+										<path fill="currentColor"
+											d="M374.6 310.6l-160 160C208.4 476.9 200.2 480 192 480s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 370.8V64c0-17.69 14.33-31.1 31.1-31.1S224 46.31 224 64v306.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0S387.1 298.1 374.6 310.6z">
+										</path>
+									</svg>
+								</th>
+								<th>
+									Last name<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-down"
+										className="icon svg-inline--fa fa-arrow-down Table_icon__+HHgn" role="img" xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 384 512">
+										<path fill="currentColor"
+											d="M374.6 310.6l-160 160C208.4 476.9 200.2 480 192 480s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 370.8V64c0-17.69 14.33-31.1 31.1-31.1S224 46.31 224 64v306.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0S387.1 298.1 374.6 310.6z">
+										</path>
+									</svg>
+								</th>
+								<th>
+									Email<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-down"
+										className="icon svg-inline--fa fa-arrow-down Table_icon__+HHgn" role="img" xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 384 512">
+										<path fill="currentColor"
+											d="M374.6 310.6l-160 160C208.4 476.9 200.2 480 192 480s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 370.8V64c0-17.69 14.33-31.1 31.1-31.1S224 46.31 224 64v306.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0S387.1 298.1 374.6 310.6z">
+										</path>
+									</svg>
+								</th>
+								<th>
+									Phone<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-down"
+										className="icon svg-inline--fa fa-arrow-down Table_icon__+HHgn" role="img" xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 384 512">
+										<path fill="currentColor"
+											d="M374.6 310.6l-160 160C208.4 476.9 200.2 480 192 480s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 370.8V64c0-17.69 14.33-31.1 31.1-31.1S224 46.31 224 64v306.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0S387.1 298.1 374.6 310.6z">
+										</path>
+									</svg>
+								</th>
+								<th>
+									Created
+									<svg aria-hidden="true" focusable="false" data-prefix="fas"
+										data-icon="arrow-down" className="icon active-icon svg-inline--fa fa-arrow-down Table_icon__+HHgn" role="img"
+										xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+										<path fill="currentColor"
+											d="M374.6 310.6l-160 160C208.4 476.9 200.2 480 192 480s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 370.8V64c0-17.69 14.33-31.1 31.1-31.1S224 46.31 224 64v306.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0S387.1 298.1 374.6 310.6z">
+										</path>
+									</svg>
+								</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
 
-			</div>
+							{users.map(user =>
+								<UserRow
+									key={user._id}
+									onInfo={onInfoClickHandler}
+									onDelete={onDeleteClickHandler}
+									onCreate={onCreateUserClickHandler}
+									onEdit={onEditUserClickHandler}
+									{...user}
+								/>
+							)}
+						</tbody>
+
+					</table>
+
+				</div>
+
+				<button className="btn-add btn" onClick={onCreateUserClickHandler}>Add new user</button>
+				<Paginator />
+			</section>
 		</>
 	)
 }

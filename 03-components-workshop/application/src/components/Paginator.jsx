@@ -1,12 +1,17 @@
 export default function Paginator(props) {
+
+  const onChangeHandler = () => {
+
+  }
+
   return (
     <>
 
       <div className="pagination position">
         <div className="limits">
           <span>Items per page:</span>
-          <select name="limit" className="limit" value="5">
-            <option value="5">5</option>
+          <select name="limit" className="limit" value="5" onChange={ onChangeHandler }>
+            <option defaultValue="5">5</option>
             <option value="5">10</option>
             <option value="5">15</option>
             <option value="5">20</option>

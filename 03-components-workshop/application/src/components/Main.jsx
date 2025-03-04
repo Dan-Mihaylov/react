@@ -1,5 +1,3 @@
-import Paginator from './Paginator';
-import Search from './Search';
 import Table from './Table';
 
 
@@ -9,13 +7,7 @@ export default function Main(props) {
     <>
       <main className="main">
 
-        {/* <!-- Section component  --> */}
-        <section className="card users-container">
-          <Search />
-          <Table />
-          <button className="btn-add btn">Add new user</button>
-          <Paginator />
-        </section>
+        <Table/>
 
 
         {/*

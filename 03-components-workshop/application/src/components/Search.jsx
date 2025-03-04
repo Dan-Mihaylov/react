@@ -1,4 +1,9 @@
-export default function (props) {
+export default function Search (props) {
+
+	const onValueChangeHandler = () => {
+
+	}
+
 	return (
 		<>
 			{/* <!-- Search bar component --> */}
@@ -14,7 +19,7 @@ export default function (props) {
 					<span>Users</span>
 				</h2>
 				<div className="search-input-container">
-					<input type="text" placeholder="Please, select the search criteria" name="search" />
+					<input type="text" placeholder="Please, select the search criteria" name="search" onChange={onValueChangeHandler}/>
 					{/* <!-- Show the clear button only if input field length !== 0 --> */}
 					<button className="btn close-btn">
 						<i className="fa-solid fa-xmark"></i>
@@ -28,7 +33,7 @@ export default function (props) {
 				<div className="filter">
 					<span>Search Criteria:</span>
 					<select name="criteria" className="criteria">
-						<option value="">Not selected</option>
+						<option defaultValue="">Not selected</option>
 						<option value="">First Name</option>
 						<option value="">Last Name</option>
 						<option value="">Email</option>
