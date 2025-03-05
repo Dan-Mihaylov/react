@@ -67,23 +67,23 @@ export default function Table(props) {
 		const userData = Object.fromEntries(formData);
 
 		usersServices.userCreate(userData)
-		.then(response => {
-			if (response.status === 200) {
-				return response.json()
-			}
-		})
-		.then(user => {
-			setUsers(users => [...users, user]);
-			setShowCreateUser(false);
-		});
+			.then(response => {
+				if (response.status === 200) {
+					return response.json()
+				}
+			})
+			.then(user => {
+				setUsers(users => [...users, user]);
+				setShowCreateUser(false);
+			});
 
 	}
 
 	const onEditUserClickHandler = (userId) => {
 		usersServices.getUser(userId)
-		.then(user => {
-			setEditUser(user);
-		})
+			.then(user => {
+				setEditUser(user);
+			})
 	}
 
 	const onEditHandler = (e, userId) => {
@@ -92,15 +92,15 @@ export default function Table(props) {
 		const userData = Object.fromEntries(formData);
 
 		usersServices.userEdit(userData, userId)
-		.then(response => {
-			if (response.status === 200) {
-				return response.json()
-			}
-		})
-		.then(updatedUser => {
-			setUsers(state => state.map(user => user._id === userId ? updatedUser : user));
-			setEditUser(null);
-		})
+			.then(response => {
+				if (response.status === 200) {
+					return response.json()
+				}
+			})
+			.then(updatedUser => {
+				setUsers(state => state.map(user => user._id === userId ? updatedUser : user));
+				setEditUser(null);
+			})
 	}
 
 	return (
@@ -130,7 +130,7 @@ export default function Table(props) {
 				{
 					showCreateUser
 					&&
-					<UserCreate 
+					<UserCreate
 						onClose={onCloseCreateEditUserHandler}
 						onCreate={onCreateUserHandler}
 					/>
@@ -153,6 +153,9 @@ export default function Table(props) {
 				{/* <!-- Table component --> */}
 				<div className="table-wrapper">
 
+					{users.length === 0 ? <div className="loading-shade">
+						<div className="spinner"></div>
+					</div> : <></>}
 
 
 					{/* 
@@ -227,7 +230,7 @@ export default function Table(props) {
 			<!-- </div> --> */}
 
 
-			<Search />
+					<Search />
 
 					<table className="table">
 						<thead>
