@@ -4,13 +4,13 @@ import Home from './components/Home';
 import About from './components/About';
 import Pricing from './components/Pricing';
 import Contact from './components/Contact';
-import Blog from './components/Blog';
+import News from './components/News';
 
 const paths = {
   home: '/',
   about: '/about',
   pricing: '/pricing',
-  blog: '/blog',
+  news: '/news',
   contact: '/contact'
 }
 
@@ -25,7 +25,7 @@ function App() {
         <Route path={paths.home} element={<Home/>}/>
         <Route path={paths.about} element={<About/>}/>
         <Route path={paths.pricing} element={<Pricing/>}/>
-        <Route path={paths.blog} element={<Blog/>}/>
+        <Route path={paths.news} element={<News/>}/>
         <Route path={paths.contact} element={<Contact/>}/>
 
       </Routes>
