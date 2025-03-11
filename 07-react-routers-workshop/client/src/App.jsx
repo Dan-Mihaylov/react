@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Routes, Route } from 'react-router';
+
 import Header from './components/header/Header';
 import Home from './components/home/Home';
 import Login from './components/login/Login';
@@ -17,13 +19,15 @@ function App() {
 			<Header />
 
 			<main id="main-content">
-				<Home />
-				<Login />
-				<Register />
-				<PageCreate />
-				<PageEdit />
-				<Details />
-				<Catalog />
+				<Routes>
+					<Route path="" element={ <Home /> }/>
+					<Route path="/login" element={ <Login /> }/>
+					<Route path="/register" element={ <Register /> }/>
+					<Route path="/game-create" element={ <PageCreate /> }/>
+					<Route path="/game-edit/:gameId" element={ <PageEdit /> }/>
+					<Route path="/details/:gameId" element={ <Details /> }/>
+					<Route path="/catalog" element={ <Catalog /> }/>
+				</Routes>
 			</main>
 
 
