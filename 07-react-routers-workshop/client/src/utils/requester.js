@@ -18,6 +18,6 @@ export default async function request(url, method, data) {
 	}
 
 	const response = await fetch(url, options);
-	const data = await response.json();
-	return data;
+	const result = await response.json();
+	return result;
 }
