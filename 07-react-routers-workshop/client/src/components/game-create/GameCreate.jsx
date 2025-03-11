@@ -1,9 +1,15 @@
-export default function PageCreate () {
+export default function GameCreate () {
+
+    const submitFormHandler = async () => {
+        
+    }
+
+
 	return (
 		
         // <!-- Create Page ( Only for logged-in users ) -->
         <section id="create-page" className="auth">
-            <form id="create">
+            <form action={ submitFormHandler } id="create">
                 <div className="container">
 
                     <h1>Create Game</h1>

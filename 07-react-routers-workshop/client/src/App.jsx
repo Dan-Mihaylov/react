@@ -5,10 +5,10 @@ import Header from './components/header/Header';
 import Home from './components/home/Home';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
-import PageCreate from './components/page-create/PageCreate';
-import PageEdit from './components/page-edit/PageEdit';
 import Details from './components/details/Details';
 import Catalog from './components/catalog/Catalog';
+import GameEdit from './components/game-edit/GameEdit';
+import GameCreate from './components/game-create/GameCreate';
 
 function App() {
 	const [count, setCount] = useState(0)
@@ -23,8 +23,8 @@ function App() {
 					<Route path="" element={ <Home /> }/>
 					<Route path="/login" element={ <Login /> }/>
 					<Route path="/register" element={ <Register /> }/>
-					<Route path="/game-create" element={ <PageCreate /> }/>
-					<Route path="/game-edit/:gameId" element={ <PageEdit /> }/>
+					<Route path="/games/create" element={ <GameCreate /> }/>
+					<Route path="/games/edit/:gameId" element={ <GameEdit /> }/>
 					<Route path="/details/:gameId" element={ <Details /> }/>
 					<Route path="/catalog" element={ <Catalog /> }/>
 				</Routes>
