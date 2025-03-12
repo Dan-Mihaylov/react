@@ -1,0 +1,42 @@
+{
+  "1a2b3c4d-1111-2222-3333-444455556666": {
+    "title": "CS 1.6",
+    "category": "FPS",
+    "maxLevel": "100",
+    "imageUrl": "https://www.symbols.com/images/symbol/3036_counter-strike-16.png",
+    "summary": "This is a first-person shooter game, where players split into two teams, Terrorists and Counter-Terrorists, and fight until one team wins.",
+    "_id": "1a2b3c4d-1111-2222-3333-444455556666"
+  },
+  "2b3c4d5e-aaaa-bbbb-cccc-ddddeeeeffff": {
+    "title": "Super Mario Bros.",
+    "category": "Platformer",
+    "maxLevel": "32",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/03/Super_Mario_Bros._box.png",
+    "summary": "A classic platform game where Mario must rescue Princess Peach from Bowser while navigating through various levels.",
+    "_id": "2b3c4d5e-aaaa-bbbb-cccc-ddddeeeeffff"
+  },
+  "3c4d5e6f-1234-5678-90ab-cdefabcdef12": {
+    "title": "The Legend of Zelda",
+    "category": "Action-Adventure",
+    "maxLevel": "10",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg",
+    "summary": "An action-adventure game where players control Link on a quest to rescue Princess Zelda and defeat Ganon.",
+    "_id": "3c4d5e6f-1234-5678-90ab-cdefabcdef12"
+  },
+  "4d5e6f7g-abcd-ef01-2345-67890abcdefg": {
+    "title": "Doom",
+    "category": "FPS",
+    "maxLevel": "30",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/5/57/Doom_cover_art.jpg",
+    "summary": "A fast-paced first-person shooter where players fight demons from Hell in a sci-fi setting.",
+    "_id": "4d5e6f7g-abcd-ef01-2345-67890abcdefg"
+  },
+  "5e6f7g8h-1111-2222-3333-abcdefabcdef": {
+    "title": "Pac-Man",
+    "category": "Arcade",
+    "maxLevel": "256",
+    "imageUrl": "https://logos-world.net/wp-content/uploads/2023/03/Pac-Man-Logo.png",
+    "summary": "A classic arcade game where players navigate a maze, eating pellets while avoiding ghosts.",
+    "_id": "5e6f7g8h-1111-2222-3333-abcdefabcdef"
+  }
+}

@@ -28,5 +28,23 @@ export default {
 		} catch (error) {
 			console.error(error);
 		}
+	},
+
+	async editGame(gameId, gameData) {
+		try {
+			const result = await request(`${baseUrl}${gameId}`, 'PUT', gameData)
+			return result;
+		} catch (error) {
+			console.error(error);
+		}
+	},
+
+	async deleteGame(gameId) {
+		try {
+			const result = await request(`${baseUrl}${gameId}`, 'DELETE');
+			return result;
+		} catch (error) {
+			console.error(error);
+		}
 	}
 }
