@@ -1,5 +1,24 @@
+import { useEffect, useState } from "react";
+import gameServices from "../../services/gameServices";
+import { useParams } from "react-router";
+
 export default function Details () {
-	return (
+    const [game, setGame] = useState({});
+    const {gameId} = useParams();
+
+    useEffect(() => {
+
+        const getGameDetails = async (gameId) => {
+            const result = await gameServices.getGame(gameId);
+            return result;
+        };
+
+        getGameDetails(gameId)
+        .then(data => setGame(data));
+
+    })
+    
+    return (
 		
         // <!--Details Page-->
         <section id="game-details">
@@ -7,17 +26,14 @@ export default function Details () {
             <div className="info-section">
 
                 <div className="game-header">
-                    <img className="game-img" src="images/MineCraft.png" />
-                    <h1>Bright</h1>
-                    <span className="levels">MaxLevel: 4</span>
-                    <p className="type">Action, Crime, Fantasy</p>
+                    <img className="game-img" src={game.imageUrl} />
+                    <h1>{game.title}</h1>
+                    <span className="levels">MaxLevel: {game.maxLevel}</span>
+                    <p className="type">{game.category}</p>
                 </div>
 
                 <p className="text">
-                    Set in a world where fantasy creatures live side by side with humans. A human cop is forced to work
-                    with an Orc to find a weapon everyone is prepared to kill for. Set in a world where fantasy
-                    creatures live side by side with humans. A human cop is forced
-                    to work with an Orc to find a weapon everyone is prepared to kill for.
+                    {game.summary}
                 </p>
 
                 {/* <!-- Bonus ( for Guests and Users ) --> */}

@@ -1,6 +1,6 @@
 import request from "../utils/requester";
 
-const baseUrl = 'http://localhost:3030/jsonstore/games';
+const baseUrl = 'http://localhost:3030/jsonstore/games/';
 
 export default {
 	async create(gameData) {
@@ -11,4 +11,22 @@ export default {
 			console.error(error);
 		}
 	},
+
+	async getAll() {
+		try {
+			const result = await request(baseUrl);
+			return Object.values(result);
+		} catch (error) {
+			console.error(error);
+		}
+	},
+
+	async getGame(gameId) {
+		try {
+			const result = await request(`${baseUrl}${gameId}`);
+			return result;
+		} catch (error) {
+			console.error(error);
+		}
+	}
 }
