@@ -1,0 +1,92 @@
+{
+  "cmt-001": {
+    "email": "user1@example.com",
+    "gameId": "1a2b3c4d-1111-2222-3333-444455556666",
+    "comment": "CS 1.6 is the best FPS of all time! Nostalgia overload.",
+    "_id": "cmt-001"
+  },
+  "cmt-002": {
+    "email": "user2@example.com",
+    "gameId": "1a2b3c4d-1111-2222-3333-444455556666",
+    "comment": "I still remember playing LAN parties with my friends. Good times!",
+    "_id": "cmt-002"
+  },
+  "cmt-003": {
+    "email": "user3@example.com",
+    "gameId": "1a2b3c4d-1111-2222-3333-444455556666",
+    "comment": "De_Dust2 is legendary. No game has the same feel as CS 1.6!",
+    "_id": "cmt-003"
+  },
+  "cmt-004": {
+    "email": "user4@example.com",
+    "gameId": "2b3c4d5e-aaaa-bbbb-cccc-ddddeeeeffff",
+    "comment": "Super Mario Bros. defined my childhood!",
+    "_id": "cmt-004"
+  },
+  "cmt-005": {
+    "email": "user5@example.com",
+    "gameId": "2b3c4d5e-aaaa-bbbb-cccc-ddddeeeeffff",
+    "comment": "I still can't believe how fun this game is, even after decades!",
+    "_id": "cmt-005"
+  },
+  "cmt-006": {
+    "email": "user6@example.com",
+    "gameId": "2b3c4d5e-aaaa-bbbb-cccc-ddddeeeeffff",
+    "comment": "Jumping on Goombas never gets old. Classic gameplay!",
+    "_id": "cmt-006"
+  },
+  "cmt-007": {
+    "email": "user7@example.com",
+    "gameId": "3c4d5e6f-1234-5678-90ab-cdefabcdef12",
+    "comment": "The original Zelda is still one of the best adventure games ever!",
+    "_id": "cmt-007"
+  },
+  "cmt-008": {
+    "email": "user8@example.com",
+    "gameId": "3c4d5e6f-1234-5678-90ab-cdefabcdef12",
+    "comment": "I love the open-world feel. This game was ahead of its time.",
+    "_id": "cmt-008"
+  },
+  "cmt-009": {
+    "email": "user9@example.com",
+    "gameId": "3c4d5e6f-1234-5678-90ab-cdefabcdef12",
+    "comment": "Master Sword, dungeons, and epic quests—this game has it all!",
+    "_id": "cmt-009"
+  },
+  "cmt-010": {
+    "email": "user10@example.com",
+    "gameId": "4d5e6f7g-abcd-ef01-2345-67890abcdefg",
+    "comment": "Doom is the reason FPS games are what they are today!",
+    "_id": "cmt-010"
+  },
+  "cmt-011": {
+    "email": "user11@example.com",
+    "gameId": "4d5e6f7g-abcd-ef01-2345-67890abcdefg",
+    "comment": "Nothing beats blasting demons with a shotgun in Doom!",
+    "_id": "cmt-011"
+  },
+  "cmt-012": {
+    "email": "user12@example.com",
+    "gameId": "4d5e6f7g-abcd-ef01-2345-67890abcdefg",
+    "comment": "Rip and tear! This game still holds up after all these years.",
+    "_id": "cmt-012"
+  },
+  "cmt-013": {
+    "email": "user13@example.com",
+    "gameId": "5e6f7g8h-1111-2222-3333-abcdefabcdef",
+    "comment": "Pac-Man is simple, yet so addictive!",
+    "_id": "cmt-013"
+  },
+  "cmt-014": {
+    "email": "user14@example.com",
+    "gameId": "5e6f7g8h-1111-2222-3333-abcdefabcdef",
+    "comment": "I always get stuck on level 256! Classic bug.",
+    "_id": "cmt-014"
+  },
+  "cmt-015": {
+    "email": "user15@example.com",
+    "gameId": "5e6f7g8h-1111-2222-3333-abcdefabcdef",
+    "comment": "Those ghosts always get me! Still love this game.",
+    "_id": "cmt-015"
+  }
+}

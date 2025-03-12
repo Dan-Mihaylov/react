@@ -7,7 +7,7 @@ export default function Comments({
 	return (
 		<ul>
 			{
-				items.map(comment => <CommentItem item={comment}/>)
+				items.map(comment => <CommentItem key={comment._id} item={comment}/>)
 			}
 		</ul>
 	)
