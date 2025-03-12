@@ -1,7 +1,16 @@
-export default function Login () {
+export default function Login ({
+    onLogin,
+}) {
+
+    const formSubmitHandler = async (formData) => {
+        const data = Object.fromEntries(formData);
+        onLogin(data.email);
+    }
+
+
 	return (
         <section id="login-page" className="auth">
-            <form id="login">
+            <form id="login" action={formSubmitHandler}>
 
                 <div className="container">
                     <div className="brand-logo"></div>

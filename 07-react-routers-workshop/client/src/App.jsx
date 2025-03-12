@@ -11,7 +11,11 @@ import GameEdit from './components/game-edit/GameEdit';
 import GameCreate from './components/game-create/GameCreate';
 
 function App() {
-	const [count, setCount] = useState(0)
+	const [email, setEmail] = useState();
+
+	const loginHandler = (emailData) => {
+		setEmail(emailData);
+	}
 
 	return (
 		<div id="box">
@@ -20,13 +24,13 @@ function App() {
 
 			<main id="main-content">
 				<Routes>
-					<Route path="" element={ <Home /> }/>
-					<Route path="/login" element={ <Login /> }/>
-					<Route path="/register" element={ <Register /> }/>
-					<Route path="/games/create" element={ <GameCreate /> }/>
-					<Route path="/games/edit/:gameId" element={ <GameEdit /> }/>
-					<Route path="/details/:gameId" element={ <Details /> }/>
-					<Route path="/catalog" element={ <Catalog /> }/>
+					<Route path="" element={<Home />} />
+					<Route path="/login" element={<Login onLogin={loginHandler}/>} />
+					<Route path="/register" element={<Register />} />
+					<Route path="/games/create" element={<GameCreate />} />
+					<Route path="/games/edit/:gameId" element={<GameEdit />} />
+					<Route path="/details/:gameId" element={<Details email={email}/>} />
+					<Route path="/catalog" element={<Catalog />} />
 				</Routes>
 			</main>
 

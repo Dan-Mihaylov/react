@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
 import gameServices from "../../services/gameServices";
 import { Link, useNavigate, useParams } from "react-router";
+import CommentsCreate from "../comments/CommentsCreate";
+import commentServices from "../../services/commentServices";
+import Comments from "../comments/Comments";
 
-export default function Details () {
+export default function Details ({
+    email,
+}) {
     const [game, setGame] = useState({});
+    const [comments, setComments] = useState([]);
     const {gameId} = useParams();
     const navigate = useNavigate();
+
 
     useEffect(() => {
 
@@ -16,6 +23,10 @@ export default function Details () {
 
         getGameDetails(gameId)
         .then(data => setGame(data));
+
+        commentServices.getAllGameComments(gameId)
+        .then(setComments)
+
 
     }, [gameId])
     
@@ -29,6 +40,10 @@ export default function Details () {
         await gameServices
         .deleteGame(gameId)
         .then(navigate('/catalog'))
+    }
+
+    const onCommentCreateHandler = (data) => {
+        setComments(comments => [...comments, data])
     }
 
     return (
@@ -52,17 +67,12 @@ export default function Details () {
                 {/* <!-- Bonus ( for Guests and Users ) --> */}
                 <div className="details-comments">
                     <h2>Comments:</h2>
-                    <ul>
-                        {/* <!-- list all comments for current game (If any) --> */}
-                        <li className="comment">
-                            <p>Content: I rate this one quite highly.</p>
-                        </li>
-                        <li className="comment">
-                            <p>Content: The best game.</p>
-                        </li>
-                    </ul>
-                    {/* <!-- Display paragraph: If there are no games in the database --> */}
-                    <p className="no-comment">No comments.</p>
+
+                    {
+                        comments.length > 0
+                        ? <Comments items={comments} />
+                        : <p className="no-comment">No comments.</p>
+                    }
                 </div>
 
                 {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
@@ -70,17 +80,10 @@ export default function Details () {
                     <Link to={`/games/edit/${gameId}`} className="button">Edit</Link>
                     <a href="#" onClick={deleteGameHandler} className="button">Delete</a>
                 </div>
+
             </div>
 
-            {/* <!-- Bonus --> */}
-            {/* <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
-            <article className="create-comment">
-                <label>Add new comment:</label>
-                <form className="form">
-                    <textarea name="comment" placeholder="Comment......"></textarea>
-                    <input className="btn submit" type="submit" value="Add Comment"/>
-                </form>
-            </article>
+            <CommentsCreate email={email} gameId={gameId} onCreate={onCommentCreateHandler}/>
 
         </section>
 	)
