@@ -22,6 +22,10 @@ a:hover {
   color: #535bf2;
 }
 
+html {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   display: flex;
@@ -71,6 +75,12 @@ button:focus-visible {
   position: absolute;
   top: 0;
   left: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 0;
+  background-color: #29032b;
+  width: 100%;
 }
 
 .nav-elements {
@@ -90,4 +100,30 @@ button:focus-visible {
   margin-bottom: 2rem;
   border-radius: 0.5rem;
   padding: 1rem;
+}
+
+.info-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+input {
+  padding: 0.3rem 0.5rem;
+  
+}
+
+.profile-image {
+  max-width: 2.5rem;
+  max-height: 2.5rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
 }

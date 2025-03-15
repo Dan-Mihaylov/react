@@ -14,7 +14,7 @@ export default function ViewJokes() {
                 pending
                     ? <p>Jokes loading...</p>
                     : jokes.map(joke => <>
-                        <div className="container">
+                        <div key={joke.id} className="container">
                             <h5>Joke id: {joke.id}</h5>
                             <p>{joke.content}</p>
                         </div>
