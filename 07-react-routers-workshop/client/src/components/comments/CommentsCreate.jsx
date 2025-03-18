@@ -1,3 +1,4 @@
+import { useCommentsCreate } from "../../api/commentsApi";
 import commentServices from "../../services/commentServices";
 
 export default function CommentsCreate({
@@ -6,6 +7,8 @@ export default function CommentsCreate({
 	onCreate,
 }) {
 
+	const { create } = useCommentsCreate();
+
 	const formSubmitAction = async (formData) => {
 		const data = Object.fromEntries(formData);
 		const commentData = {
@@ -13,8 +16,8 @@ export default function CommentsCreate({
 			email,
 			gameId
 		};
-		await commentServices.create(commentData)
-		.then(onCreate)
+		create(commentData)
+		.then(onCreate);
 	}
 
 	return (

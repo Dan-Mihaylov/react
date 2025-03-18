@@ -10,23 +10,23 @@ import Details from './components/details/Details';
 import Catalog from './components/catalog/Catalog';
 import GameEdit from './components/game-edit/GameEdit';
 import GameCreate from './components/game-create/GameCreate';
+import Logout from './components/logout/Logout';
 
 function App() {
-	const [authData, setAuthData] = useState({
-		_id: '',
-		email: '',
-		username: '',
-		accessToken: '',
-	});
+	const [authData, setAuthData] = useState({});
 
 	const userLoginHandler = (authData) => {
 		setAuthData(authData);
 	}
 
+	const userLogoutHandler = () => {
+		setAuthData({})
+	}
+
 	return (
 		<div id="box">
 
-			<UserContext.Provider value={{ ...authData, userLoginHandler }}>
+			<UserContext.Provider value={{ ...authData, userLoginHandler, userLogoutHandler }}>
 
 				<Header />
 
@@ -35,9 +35,10 @@ function App() {
 						<Route path="" element={<Home />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/register" element={<Register />} />
+						<Route path="/logout" element={<Logout />} />
 						<Route path="/games/create" element={<GameCreate />} />
 						<Route path="/games/edit/:gameId" element={<GameEdit />} />
-						<Route path="/details/:gameId" element={<Details email={authData.email} />} />
+						<Route path="/details/:gameId" element={<Details />} />
 						<Route path="/catalog" element={<Catalog />} />
 					</Routes>
 				</main>

@@ -1346,6 +1346,48 @@
     	}
     };
     var seedData = {
+        "games": [
+            {
+                "_ownerId": "560f6ed0-86c3-4470-90a7-87bc9a80fe98",
+                "title": "MK3 Ultimate",
+                "category": "Fighting",
+                "maxLevel": "10",
+                "imageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/Ultimate_MK3.png/220px-Ultimate_MK3.png",
+                "summary": "Ultimate Mortal Kombat 3 was released to arcades in 1995. It is an update of Mortal Kombat 3, featuring altered gameplay, additional characters, and new arenas. Various home versions of the game were released soon afterward, although none of these were completely identical to the arcade version.",
+                "_createdOn": 1742238372475,
+                "_id": "2b420d7c-3c8a-4d67-b608-b256228e60dc"
+            },
+            {
+                "_ownerId": "560f6ed0-86c3-4470-90a7-87bc9a80fe98",
+                "title": "Street Fighter II",
+                "category": "Fighting",
+                "maxLevel": "12",
+                "imageUrl": "https://m.media-amazon.com/images/M/MV5BMTVmY2I1YjctMDMwMS00OWFmLWFiNDktMTk2ZDljZDIzYTg4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+                "summary": "Street Fighter II is a competitive fighting game released for arcades in 1991. It is widely credited for popularizing the fighting genre and introduced combos into gameplay.",
+                "_createdOn": 1742238395000,
+                "_id": "3c550d7c-7f1a-4e67-b859-b563228e61ab"
+            },
+            {
+                "_ownerId": "560f6ed0-86c3-4470-90a7-87bc9a80fe98",
+                "title": "Tekken 3",
+                "category": "Fighting",
+                "maxLevel": "11",
+                "imageUrl": "https://assets-prd.ignimgs.com/2022/03/13/tekken3-1647189672174.jpg",
+                "summary": "Tekken 3 is a fighting game, the third entry in the Tekken series. Released in arcades in 1997 and for PlayStation in 1998, it introduced many new characters and features.",
+                "_createdOn": 1742238410000,
+                "_id": "4d660e8d-9e2b-4d89-c97a-c987334e72cd"
+            },
+            {
+                "_ownerId": "560f6ed0-86c3-4470-90a7-87bc9a80fe98",
+                "title": "Super Smash Bros. Melee",
+                "category": "Fighting",
+                "maxLevel": "15",
+                "imageUrl": "https://m.media-amazon.com/images/I/81n03ru8VOL._AC_UF1000,1000_QL80_.jpg",
+                "summary": "Super Smash Bros. Melee is a crossover fighting game released for the Nintendo GameCube in 2001. It features characters from various Nintendo franchises and became one of the best-selling GameCube games.",
+                "_createdOn": 1742238435000,
+                "_id": "5e771f9e-bb3c-5e9a-d89b-d098445f83de"
+            }
+        ],
     	recipes: {
     		"3987279d-0ad4-4afb-8ca9-5b256ae3b298": {
     			_ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",

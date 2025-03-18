@@ -1,24 +1,9 @@
-import { useState, useEffect } from "react";
 import CatalogItem from "./CatalogItem";
-import gameServices from "../../services/gameServices";
+import { useGames } from "../../api/gameApi";
 
 
 export default function Catalog() {
-	const [games, setGames] = useState([]);
-
-	useEffect(() => {
-
-		const getGames = async () => {
-			const result = await gameServices.getAll();
-			return result;
-		};
-
-		getGames()
-			.then(data => setGames(data));
-
-	}, [])
-
-
+	const { games } = useGames();
 
 	return (
 		// < !--Catalogue -- >

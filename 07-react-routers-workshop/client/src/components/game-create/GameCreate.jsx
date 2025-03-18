@@ -1,12 +1,14 @@
 import gameServices from "../../services/gameServices";
 import { useNavigate } from "react-router"; 
+import { useCreateGame } from "../../api/gameApi";
 
 export default function GameCreate () {
     let navigate = useNavigate();
+    const { create } = useCreateGame();
 
     const submitFormHandler = async (formData) => {
         const gameData = Object.fromEntries(formData);
-        const createdGame = await gameServices.create(gameData);
+        const createdGame = await create(gameData);
         if (!createdGame.errors) {
             navigate('/catalog');
             return;

@@ -1,16 +1,19 @@
 import { useActionState, useContext } from 'react';
 import { useLogin } from '../../api/authApi';
 import { UserContext } from '../../context/UserContext';
+import { useNavigate } from 'react-router';
 
 export default function Login () {
     const { login } = useLogin();
     const { userLoginHandler } = useContext(UserContext);
+    const navigate = useNavigate();
 
     const formSubmitHandler = async (previousState, formData) => {
         const data = Object.fromEntries(formData);
         const authData = await login(data.email, data.password);
         
         userLoginHandler(authData);
+        navigate('/');
         
         return data;
     }
