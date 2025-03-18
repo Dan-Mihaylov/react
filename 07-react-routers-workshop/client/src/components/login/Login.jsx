@@ -1,16 +1,25 @@
-export default function Login ({
-    onLogin,
-}) {
+import { useActionState, useContext } from 'react';
+import { useLogin } from '../../api/authApi';
+import { UserContext } from '../../context/UserContext';
 
-    const formSubmitHandler = async (formData) => {
+export default function Login () {
+    const { login } = useLogin();
+    const { userLoginHandler } = useContext(UserContext);
+
+    const formSubmitHandler = async (previousState, formData) => {
         const data = Object.fromEntries(formData);
-        onLogin(data.email);
+        const authData = await login(data.email, data.password);
+        
+        userLoginHandler(authData);
+        
+        return data;
     }
 
+    const [values, loginAction, isPending] = useActionState(formSubmitHandler, {email: '', password: ''});
 
 	return (
         <section id="login-page" className="auth">
-            <form id="login" action={formSubmitHandler}>
+            <form id="login" action={ loginAction }>
 
                 <div className="container">
                     <div className="brand-logo"></div>
@@ -20,7 +29,7 @@ export default function Login ({
 
                     <label htmlFor="login-pass">Password:</label>
                     <input type="password" id="login-password" name="password"/>
-                    <input type="submit" className="btn submit" value="Login"/>
+                    <input type="submit" className="btn submit" value="Login" disabled={ isPending }/>
                     <p className="field">
                         <span>If you don't have profile click <a href="#">here</a></span>
                     </p>

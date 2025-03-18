@@ -1,10 +1,7 @@
-export default async function request(url, method, data) {
-	let options = {};
+export default async function request(url, method, data, options={}) {
 
 	if (method !== 'GET') {
-		options = {
-			method
-		}
+		options.method = method;
 	}
 
 	if (data) {
