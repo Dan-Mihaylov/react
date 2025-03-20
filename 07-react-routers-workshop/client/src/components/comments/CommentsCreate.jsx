@@ -1,5 +1,4 @@
 import { useCommentsCreate } from "../../api/commentsApi";
-import commentServices from "../../services/commentServices";
 
 export default function CommentsCreate({
 	email,

@@ -4,7 +4,7 @@ import { UserContext } from "../../context/UserContext";
 
 
 export default function Header() {
-	const { email } = useContext(UserContext);
+	const { isAuthenticated } = useContext(UserContext);
 
 
 	return (
@@ -12,14 +12,15 @@ export default function Header() {
 			<h1><Link className="home" to="/">GamesPlay</Link></h1>
 			<nav>
 				<Link to="/catalog">All games</Link>
-				{email
+				{isAuthenticated
 					&&
 					<div id="user">
 						<Link to="/games/create">Create Game</Link>
 						<Link to="/logout">Logout</Link>
+						<Link to="/admin">Admin</Link>
 					</div>
 				}
-				{!email
+				{!isAuthenticated
 					&&
 					<div id="guest">
 						<Link to="/login">Login</Link>

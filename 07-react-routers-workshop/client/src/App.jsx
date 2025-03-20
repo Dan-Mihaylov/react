@@ -1,6 +1,6 @@
-import { useState } from 'react'
 import { Routes, Route } from 'react-router';
 import { UserContext } from './context/UserContext';
+import useLocalStorageState from './hooks/useLocalStorageState';
 
 import Header from './components/header/Header';
 import Home from './components/home/Home';
@@ -11,7 +11,11 @@ import Catalog from './components/catalog/Catalog';
 import GameEdit from './components/game-edit/GameEdit';
 import GameCreate from './components/game-create/GameCreate';
 import Logout from './components/logout/Logout';
-import useLocalStorageState from './hooks/useLocalStorageState';
+import AuthGuard from './guards/AuthGuard';
+import GuestGuard from './guards/GuestGuard';
+import { lazy, Suspense } from 'react';
+
+const Admin = lazy(() => import('./components/admin/Admin'));
 
 const authKey = 'auth';
 
@@ -36,11 +40,23 @@ function App() {
 				<main id="main-content">
 					<Routes>
 						<Route path="" element={<Home />} />
-						<Route path="/login" element={<Login />} />
-						<Route path="/register" element={<Register />} />
-						<Route path="/logout" element={<Logout />} />
-						<Route path="/games/create" element={<GameCreate />} />
-						<Route path="/games/edit/:gameId" element={<GameEdit />} />
+
+						<Route element={<GuestGuard />}>
+							<Route path="/login" element={<Login />} />
+							<Route path="/register" element={<Register />} />
+						</Route>
+
+						<Route element={<AuthGuard />}>
+							<Route path="/games/create" element={<GameCreate />} />
+							<Route path="/games/edit/:gameId" element={<GameEdit />} />
+							<Route path="/logout" element={<Logout />} />
+							<Route path="/admin" element={(
+								<Suspense fallback={<h1 style={{backgroundColor: "Red"}}>This is a fallback element</h1>}>
+									<Admin />
+								</Suspense>
+							)}/>
+						</Route>
+
 						<Route path="/details/:gameId" element={<Details />} />
 						<Route path="/catalog" element={<Catalog />} />
 					</Routes>

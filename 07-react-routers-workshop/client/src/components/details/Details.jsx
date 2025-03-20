@@ -8,7 +8,7 @@ import { useGame, useGameDelete } from "../../api/gameApi";
 import { useComments } from "../../api/commentsApi";
 
 export default function Details() {
-    const { email, _id: userId } = useContext(UserContext);
+    const { email, isAuthenticated, _id: userId } = useContext(UserContext);
     const { gameId } = useParams();
     const { game } = useGame(gameId);
     const { comments, setComments } = useComments(gameId);
@@ -71,7 +71,7 @@ export default function Details() {
             </div>
             {!isOwner
                 &&
-                email
+                isAuthenticated
                 &&
                 <CommentsCreate email={email} gameId={gameId} onCreate={onCommentCreateHandler} />
             }

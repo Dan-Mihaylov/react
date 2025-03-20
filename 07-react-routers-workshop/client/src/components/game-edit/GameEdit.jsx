@@ -6,6 +6,7 @@ export default function GameEdit () {
     const { game } = useGame(gameId);
     const { edit } = useGameEdit();
     const navigate = useNavigate();
+    console.log(game);
 
 
     const handleFormSubmission = async (formData) => {
