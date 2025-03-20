@@ -11,9 +11,12 @@ import Catalog from './components/catalog/Catalog';
 import GameEdit from './components/game-edit/GameEdit';
 import GameCreate from './components/game-create/GameCreate';
 import Logout from './components/logout/Logout';
+import useLocalStorageState from './hooks/useLocalStorageState';
+
+const authKey = 'auth';
 
 function App() {
-	const [authData, setAuthData] = useState({});
+	const [authData, setAuthData] = useLocalStorageState(authKey, {});
 
 	const userLoginHandler = (authData) => {
 		setAuthData(authData);
